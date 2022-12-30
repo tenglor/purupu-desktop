@@ -14,13 +14,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
-set(TS_FILES purupu-desktop_ru_RU.ts)
+set(TS_FILES translates/purupu-desktop_ru_RU.ts)
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+        src/main.cpp
+        src/mainwindow.cpp
+        src/mainwindow.h
+        src/mainwindow.ui
         ${TS_FILES}
 )
 
@@ -62,8 +62,11 @@ set_target_properties(purupu-desktop PROPERTIES
 )
 
 install(TARGETS purupu-desktop
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    RUNTIME DESTINATION ${CMAKE_CURRENT_LIST_DIR}/bin
+    BUNDLE DESTINATION ${CMAKE_CURRENT_LIST_DIR}/bin
+    LIBRARY DESTINATION ${CMAKE_CURRENT_LIST_DIR}/lib)
+
+#include(CPack)
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(purupu-desktop)
