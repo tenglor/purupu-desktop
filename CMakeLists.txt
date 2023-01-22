@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(purupu-desktop VERSION 0.1 LANGUAGES CXX)
+project(purupu-desktop VERSION 0.1.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -61,12 +61,13 @@ set_target_properties(purupu-desktop PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
+set(CMAKE_INSTALL_PREFIX "/usr/local")
 install(TARGETS purupu-desktop
-    RUNTIME DESTINATION ${CMAKE_CURRENT_LIST_DIR}/bin
-    BUNDLE DESTINATION ${CMAKE_CURRENT_LIST_DIR}/bin
-    LIBRARY DESTINATION ${CMAKE_CURRENT_LIST_DIR}/lib)
+    RUNTIME DESTINATION bin
+    BUNDLE DESTINATION bin
+    LIBRARY DESTINATION lib)
 
-#include(CPack)
+include(Packing.cmake)
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(purupu-desktop)
